@@ -72,7 +72,7 @@ public class NasabahServiceImpl implements NasabahService {
         .map(nasabah -> NasabahResponseDto.builder()
             .id(nasabah.getId())
             .nik(nasabah.getNik())
-            .fullName(nasabah.getNik())
+            .fullName(nasabah.getFullName())
             .address(nasabah.getAddress())
             .placeBirth(nasabah.getPlaceBirth())
             .dateOfBirth(nasabah.getDateOfBirth())
