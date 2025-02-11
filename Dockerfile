@@ -6,4 +6,4 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/gagas-0.0.1-SNAPSHOT.jar /gagas-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java", "-jar", "/gagas-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/gagas-0.0.1-SNAPSHOT.jar"]
