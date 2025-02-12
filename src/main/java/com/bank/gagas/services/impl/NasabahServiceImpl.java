@@ -7,6 +7,8 @@ import com.bank.gagas.model.entity.Nasabah;
 import com.bank.gagas.repository.NasabahRepository;
 import com.bank.gagas.services.NasabahService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -65,11 +67,10 @@ public class NasabahServiceImpl implements NasabahService {
   }
 
   @Override
-  public List<NasabahResponseDto> getAll() {
-    List<Nasabah> allNasabah = this.nasabahRepository.findAll();
+  public Page<NasabahResponseDto> getAll(Pageable pageable) {
+    Page<Nasabah> allNasabah = this.nasabahRepository.findAll(pageable);
 
-    return allNasabah.stream()
-        .map(nasabah -> NasabahResponseDto.builder()
+    return allNasabah.map(nasabah -> NasabahResponseDto.builder()
             .id(nasabah.getId())
             .nik(nasabah.getNik())
             .fullName(nasabah.getFullName())
@@ -77,8 +78,7 @@ public class NasabahServiceImpl implements NasabahService {
             .placeBirth(nasabah.getPlaceBirth())
             .dateOfBirth(nasabah.getDateOfBirth())
             .phone(nasabah.getPhone())
-            .build())
-        .collect(Collectors.toList());
+            .build());
   }
 
   @Override

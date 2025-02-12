@@ -16,7 +16,7 @@ public class Nasabah {
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
 
-  @Column(name = "nik", unique = true, updatable = false, nullable = false)
+  @Column(name = "nik", unique = true, updatable = false, nullable = false, length = 16)
   private String nik;
 
   @Column(name = "full_name")
